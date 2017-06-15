@@ -23,7 +23,6 @@ var mostrarTemas= function(topics){
 	$li.addClass("collection-item avatar");
 	var $img=$("<img />");
 	$img.addClass("circle");
-	$img.attr("src":"autor.jpg");
 	var $title=$("<span />");
 	$title.addClass("title");
 	$title.text(content);
