@@ -1,7 +1,6 @@
-var allTopics= $("#all-topics");
 var api ={
-	url: 'https://examen-laboratoria-sprint-5.herokuapp.com/topics';
-}
+	url: 'https://examen-laboratoria-sprint-5.herokuapp.com/topics/'
+};
 
 var cargarPagina= function(){
 	cargarTopics();
@@ -9,20 +8,33 @@ var cargarPagina= function(){
 };
 
 var cargarTopics= function(){
-	var url= ;
-	$.getJSON(url,function(response){
-		var topics= response.results;
-		console.log(url);
-		mostrarTemas(topics);
+	$.getJSON(api.url,function(topics){
+		topics.forEach(mostrarTemas);
 	});
 }
 
 var mostrarTemas= function(topics){
 	var content= topics.content;
-	var $ul=$("#container-topic");
+	var author= topics.author_name;
+	var responses= topics.responses_count;
+	console.log(responses);
+	var $ul=$("#container-topics");
 	var $li=$("<li />");
-	var title=$("<span />");
-	var dates=$("<p>+"topics.author_name+"<br />"+ topics.responses_count+"</p>");
-}
+	$li.addClass("collection-item avatar");
+	var $img=$("<img />");
+	$img.addClass("circle");
+	$img.attr("src":"autor.jpg");
+	var $title=$("<span />");
+	$title.addClass("title");
+	$title.text(content);
+	var $dates=$("<p>" + author + "<br />"+ responses +"</p>");
+
+	
+	$ul.append($li);
+	$li.append($img);
+	$li.append($title);
+	$li.append($dates);
+
+};
 
 $(document).ready(cargarPagina);
